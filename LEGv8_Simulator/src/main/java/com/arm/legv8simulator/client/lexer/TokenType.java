@@ -30,7 +30,7 @@ public enum TokenType {
 	SMNEMONIC_RR("FCMPS[ \t]+|fcmps[ \t]+", 12, "SMNEMONIC"),
 	DMNEMONIC_RR("FCMPD[ \t]+|fcmpd[ \t]+", 13, "DMNEMONIC"),
 	XMNEMONIC_RRI("ADDIS?[ \t]+|SUBIS?[ \t]+|ANDIS?[ \t]+|ORRI[ \t]+|EORI[ \t]+|LS[LR][ \t]+|addis?[ \t]+|subis?[ \t]+|andis?[ \t]+|orri[ \t]+|eori[ \t]+|ls[lr][ \t]+", 14, "XMNEMONIC"),
-	XMNEMONIC_RRR("ADDS?[ \t]+|SUBS?[ \t]+|ANDS?[ \t]+|MUL[ \t]+|SMULH[ \t]+|UMULH[ \t]+|SDIV[ \t]+|UDIV[ \t]+|ORR[ \t]+|EOR[ \t]+|adds?[ \t]+|fmul[sd]?[ \t]+|fdiv[sd]?[ \t]+|subs?[ \t]+|ands?[ \t]+|mul[ \t]+|smulh[ \t]+|umulh[ \t]+|sdiv[ \t]+|udiv[ \t]+|orr[ \t]+|eor[ \t]+", 15, "XMNEMONIC"),
+	XMNEMONIC_RRR("ADDS?[ \t]+|SUBS?[ \t]+|ANDS?[ \t]+|MUL[ \t]+|SMULH[ \t]+|UMULH[ \t]+|SDIV[ \t]+|UDIV[ \t]+|ORR[ \t]+|EOR[ \t]+|adds?[ \t]+|subs?[ \t]+|ands?[ \t]+|mul[ \t]+|smulh[ \t]+|umulh[ \t]+|sdiv[ \t]+|udiv[ \t]+|orr[ \t]+|eor[ \t]+", 15, "XMNEMONIC"),
 	SMNEMONIC_RRR("FADDS[ \t]+|FSUBS[ \t]+|FDIVS[ \t]+|FMULS[ \t]+|fadds[ \t]+|fsubs[ \t]+|fmuls[ \t]+|fdivs[ \t]+", 16, "SMNEMONIC"),
 	DMNEMONIC_RRR("FADDD[ \t]+|FSUBD[ \t]+|FDIVD[ \t]+|FMULD[ \t]+|faddd[ \t]+|fsubd[ \t]+|fmuld[ \t]+|fdivd[ \t]+", 17, "DMNEMONIC"),
 	XMNEMONIC_RM("LDURSW[ \t]+|LDUR[HB]?[ \t]+|LDXR[ \t]+|STUR[WHB]?[ \t]+|ldursw[ \t]+|ldur[hb]?[ \t]+|ldxr[ \t]+|stur[whb]?[ \t]+", 18, "XMNEMONIC"),
