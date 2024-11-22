@@ -1172,7 +1172,7 @@ public class CPU {
 		if (baseAddressReg == SP) checkSPAlignment();
 		memory.storeWord(XRegisterFile[baseAddressReg].readDoubleWord()+offset, DRegisterFile[valReg].readDoubleWord());
 		clearExclusiveAccessTag(XRegisterFile[baseAddressReg].readDoubleWord()+offset, Memory.DOUBLEWORD_SIZE);
-		cpuLog.append("STURD \t S" + valReg + ", [X" + baseAddressReg + ", #" + offset + "] \n");
+		cpuLog.append("STURS \t S" + valReg + ", [X" + baseAddressReg + ", #" + offset + "] \n");
 	}
 	
 	private void LDURS(int destReg, int baseAddressReg, int offset, Memory memory) 
@@ -1182,7 +1182,7 @@ public class CPU {
 			cpuLog.append("Ignored attempted assignment to XZR. \n");
 		} else {
 			DRegisterFile[destReg].writeWord((int) memory.loadDoubleword(XRegisterFile[baseAddressReg].readDoubleWord()+offset));
-			cpuLog.append("LDURD \t S" + destReg + ", [X" + baseAddressReg + ", #" + offset + "] \n");
+			cpuLog.append("LDURS \t S" + destReg + ", [X" + baseAddressReg + ", #" + offset + "] \n");
 		}
 	}
 
