@@ -75,6 +75,24 @@ public class Memory {
 
     /**
      * @param address the address from which to retrieve data.
+     * @return the word stored at <code>address</code>
+     * @throws SegmentFaultException
+     */
+    public long loadWord(final long address) throws SegmentFaultException {
+        boundsCheck(address, WORD_SIZE);
+        for (int i = 0; i < WORD_SIZE; i++) {
+            Byte b = memory.get(address + i);
+            if (b == null) {
+                buffer.putByte(i + WORD_SIZE, (byte) 0);
+            } else {
+                buffer.putByte(i + WORD_SIZE, b);
+            }
+        }
+        return buffer.getDoubleWord(0) & 0x00000000ffffffffL;
+    }
+
+    /**
+     * @param address the address from which to retrieve data.
      * @return the signed word stored at <code>address</code>
      * @throws SegmentFaultException
      */
