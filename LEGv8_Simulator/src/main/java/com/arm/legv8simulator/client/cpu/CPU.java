@@ -1181,7 +1181,7 @@ public class CPU {
 		if (destReg == XZR) {
 			cpuLog.append("Ignored attempted assignment to XZR. \n");
 		} else {
-			DRegisterFile[destReg].writeWord((int) memory.loadDoubleword(XRegisterFile[baseAddressReg].readDoubleWord()+offset));
+			DRegisterFile[destReg].writeWord((int) memory.loadWord(XRegisterFile[baseAddressReg].readDoubleWord()+offset));
 			cpuLog.append("LDURS \t S" + destReg + ", [X" + baseAddressReg + ", #" + offset + "] \n");
 		}
 	}
