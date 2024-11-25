@@ -759,7 +759,7 @@ public class CPU {
 		if (destReg == XZR) {
 			cpuLog.append("Ignored attempted assignment to XZR. \n");
 		} else {
-			XRegisterFile[destReg].writeDoubleWord(memory.loadDoubleword(XRegisterFile[baseAddressReg].readDoubleWord()+offset));
+			XRegisterFile[destReg].writeDoubleWord(memory.loadDoubleWord(XRegisterFile[baseAddressReg].readDoubleWord()+offset));
 			cpuLog.append("LDUR \t X" + destReg + ", [X" + baseAddressReg + ", #" + offset + "] \n");
 		}
 	}
@@ -767,7 +767,7 @@ public class CPU {
 	private void STUR(int valReg, int baseAddressReg, int offset, Memory memory) 
 			throws SegmentFaultException, SPAlignmentException {
 		if (baseAddressReg == SP) checkSPAlignment();
-		memory.storeDoubleword(XRegisterFile[baseAddressReg].readDoubleWord()+offset, XRegisterFile[valReg].readDoubleWord());
+		memory.storeDoubleWord(XRegisterFile[baseAddressReg].readDoubleWord()+offset, XRegisterFile[valReg].readDoubleWord());
 		clearExclusiveAccessTag(XRegisterFile[baseAddressReg].readDoubleWord()+offset, Memory.DOUBLEWORD_SIZE);
 		cpuLog.append("STUR \t X" + valReg + ", [X" + baseAddressReg + ", #" + offset + "] \n");
 	}
@@ -797,7 +797,7 @@ public class CPU {
 		if (destReg == XZR) {
 			cpuLog.append("Ignored attempted assignment to XZR. \n");
 		} else {
-			XRegisterFile[destReg].writeDoubleWord(memory.loadHalfword(XRegisterFile[baseAddressReg].readDoubleWord()+offset));
+			XRegisterFile[destReg].writeDoubleWord(memory.loadHalfWord(XRegisterFile[baseAddressReg].readDoubleWord()+offset));
 			cpuLog.append("LDURH \t X" + destReg + ", [X" + baseAddressReg + ", #" + offset + "] \n");
 		}
 	}
@@ -805,7 +805,7 @@ public class CPU {
 	private void STURH(int valReg, int baseAddressReg, int offset, Memory memory) 
 			throws SegmentFaultException, SPAlignmentException {
 		if (baseAddressReg == SP) checkSPAlignment();
-		memory.storeHalfword(XRegisterFile[baseAddressReg].readDoubleWord()+offset, XRegisterFile[valReg].readDoubleWord());
+		memory.storeHalfWord(XRegisterFile[baseAddressReg].readDoubleWord()+offset, XRegisterFile[valReg].readDoubleWord());
 		clearExclusiveAccessTag(XRegisterFile[baseAddressReg].readDoubleWord()+offset, Memory.HALFWORD_SIZE);
 		cpuLog.append("STURH \t X" + valReg + ", [X" + baseAddressReg + ", #" + offset + "] \n");
 	}
@@ -836,7 +836,7 @@ public class CPU {
 		if (destReg == XZR) {
 			cpuLog.append("Ignored attempted assignment to XZR. \n");
 		} else {
-			XRegisterFile[destReg].writeDoubleWord(memory.loadDoubleword(address));
+			XRegisterFile[destReg].writeDoubleWord(memory.loadDoubleWord(address));
 			taggedAddress = address;
 			cpuLog.append("LDXR \t X" + destReg + ", [X" + baseAddressReg + ", #" + offset + "] \n");
 		}
@@ -847,7 +847,7 @@ public class CPU {
 		if (baseAddressReg == SP) checkSPAlignment();
 		long address = XRegisterFile[baseAddressReg].readDoubleWord() + offset;
 		if (taggedAddress == address) {
-			memory.storeDoubleword(address, XRegisterFile[valReg].readDoubleWord());
+			memory.storeDoubleWord(address, XRegisterFile[valReg].readDoubleWord());
 			XRegisterFile[outcomeReg].writeDoubleWord(0);
 			taggedAddress = 0;
 			STXRSucceed = true;
@@ -1151,7 +1151,7 @@ public class CPU {
 	private void STURD(int valReg, int baseAddressReg, int offset, Memory memory) 
 			throws SegmentFaultException, SPAlignmentException {
 		if (baseAddressReg == SP) checkSPAlignment();
-		memory.storeDoubleword(XRegisterFile[baseAddressReg].readDoubleWord()+offset, DRegisterFile[valReg].readDoubleWord());
+		memory.storeDoubleWord(XRegisterFile[baseAddressReg].readDoubleWord()+offset, DRegisterFile[valReg].readDoubleWord());
 		clearExclusiveAccessTag(XRegisterFile[baseAddressReg].readDoubleWord()+offset, Memory.DOUBLEWORD_SIZE);
 		cpuLog.append("STURD \t D" + valReg + ", [X" + baseAddressReg + ", #" + offset + "] \n");
 	}
@@ -1162,7 +1162,7 @@ public class CPU {
 		if (destReg == XZR) {
 			cpuLog.append("Ignored attempted assignment to XZR. \n");
 		} else {
-			DRegisterFile[destReg].writeDoubleWord(memory.loadDoubleword(XRegisterFile[baseAddressReg].readDoubleWord()+offset));
+			DRegisterFile[destReg].writeDoubleWord(memory.loadDoubleWord(XRegisterFile[baseAddressReg].readDoubleWord()+offset));
 			cpuLog.append("LDURD \t D" + destReg + ", [X" + baseAddressReg + ", #" + offset + "] \n");
 		}
 	}

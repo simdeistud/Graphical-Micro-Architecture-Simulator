@@ -795,7 +795,7 @@ public class WebApp implements EntryPoint {
     private void updateStackLabels(LEGv8_Simulator sim) {
         for (int i = 0; i < stackPanels.length; i++) {
             try {
-                stackPanels[i].update(sim.getMemoryState().loadDoubleword(Memory.STACK_BASE - i * 8));
+                stackPanels[i].update(sim.getMemoryState().loadDoubleWord(Memory.STACK_BASE - i * 8));
             } catch (SegmentFaultException e) {
                 continue;
             }

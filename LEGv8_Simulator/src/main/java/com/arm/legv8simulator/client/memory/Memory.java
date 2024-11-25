@@ -52,7 +52,7 @@ public class Memory {
      * @param address the address from which to retrieve data.
      * @return the doubleword stored at <code>address</code>
      */
-    public long loadDoubleword(final long address) throws SegmentFaultException {
+    public long loadDoubleWord(final long address) throws SegmentFaultException {
         boundsCheck(address, DOUBLEWORD_SIZE);
         for (int i = 0; i < DOUBLEWORD_SIZE; i++) {
             buffer.putByte(i, (byte) loadByte(address + i));
@@ -65,7 +65,7 @@ public class Memory {
      * @param value   the data to be stored at <code>address</code>.
      * @throws SegmentFaultException
      */
-    public void storeDoubleword(final long address, final long value) throws SegmentFaultException {
+    public void storeDoubleWord(final long address, final long value) throws SegmentFaultException {
         boundsCheck(address, DOUBLEWORD_SIZE);
         buffer.putDoubleWord(0, value);
         for (int i = 0; i < DOUBLEWORD_SIZE; i++) {
@@ -132,7 +132,7 @@ public class Memory {
      * @return the unsigned halfword stored at <code>address</code>
      * @throws SegmentFaultException
      */
-    public long loadHalfword(final long address) throws SegmentFaultException {
+    public long loadHalfWord(final long address) throws SegmentFaultException {
         boundsCheck(address, HALFWORD_SIZE);
         for (int i = 0; i < DOUBLEWORD_SIZE - HALFWORD_SIZE; i++) {
             buffer.putByte(i, (byte) 0);
@@ -153,7 +153,7 @@ public class Memory {
      * @param value   the data to be stored at <code>address</code>.
      * @throws SegmentFaultException
      */
-    public void storeHalfword(final long address, final long value) throws SegmentFaultException {
+    public void storeHalfWord(final long address, final long value) throws SegmentFaultException {
         boundsCheck(address, HALFWORD_SIZE);
         buffer.putDoubleWord(0, value);
         memory.put(address, buffer.getByte(DOUBLEWORD_SIZE - HALFWORD_SIZE));
