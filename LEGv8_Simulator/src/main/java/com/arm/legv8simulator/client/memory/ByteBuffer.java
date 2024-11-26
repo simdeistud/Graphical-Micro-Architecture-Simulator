@@ -15,13 +15,13 @@ package com.arm.legv8simulator.client.memory;
 
 class ByteBuffer {
 
-    private byte[] buffer;
+    private final byte[] buffer;
 
 
     /**
      * @param capacity the number of bytes in this ByteBuffer
      */
-    public ByteBuffer(int capacity) {
+    public ByteBuffer(final int capacity) {
         buffer = new byte[capacity];
     }
 
@@ -29,7 +29,7 @@ class ByteBuffer {
      * @param index the location to insert data in this ByteBuffer
      * @param value the byte to be inserted into the ByteBuffer
      */
-    public void putByte(int index, byte value) {
+    public void putByte(final int index, final byte value) {
         buffer[index] = value;
     }
 
@@ -37,8 +37,35 @@ class ByteBuffer {
      * @param index the location to retrieve data
      * @return the byte at <code>index</code> in this ByteBuffer
      */
-    public byte getByte(int index) {
+    public byte getByte(final int index) {
         return buffer[index];
+    }
+
+    /**
+     * Data is inserted in big-endian format
+     *
+     * @param index the location to insert data in this ByteBuffer
+     * @param value the two bytes to be inserted into the ByteBuffer
+     */
+    public void putHalfWord(final int index, final int value) {
+        for (int i = index; i < Memory.HALFWORD_SIZE; i++) {
+            putByte(i, (byte) (value >>> (Memory.HALFWORD_SIZE - 1 - i) * Memory.BITS_IN_BYTE));
+        }
+    }
+
+    /**
+     * Data in the ByteBuffer is interpreted in big-endian format
+     *
+     * @param index the location to retrieve data
+     * @return the <code>int</code> formed by concatenating the two bytes starting at <code>index</code> in this ByteBuffer
+     */
+    public int getHalfWord(final int index) {
+        int result = 0;
+        for (int i = index; i < Memory.HALFWORD_SIZE; i++) {
+            result = result << Memory.BITS_IN_BYTE;
+            result = result | (getByte(i) & 0x000000ff);
+        }
+        return result;
     }
 
     /**
@@ -47,9 +74,9 @@ class ByteBuffer {
      * @param index the location to insert data in this ByteBuffer
      * @param value the four bytes to be inserted into the ByteBuffer
      */
-    public void putWord(int index, int value) {
+    public void putWord(final int index, final int value) {
         for (int i = index; i < Memory.WORD_SIZE; i++) {
-            buffer[i] = (byte) (value >>> (Memory.WORD_SIZE - 1 - i) * Memory.BITS_IN_BYTE);
+            putByte(i, (byte) (value >>> (Memory.WORD_SIZE - 1 - i) * Memory.BITS_IN_BYTE));
         }
     }
 
@@ -59,11 +86,11 @@ class ByteBuffer {
      * @param index the location to retrieve data
      * @return the <code>int</code> formed by concatenating the four bytes starting at <code>index</code> in this ByteBuffer
      */
-    public int getWord(int index) {
+    public int getWord(final int index) {
         int result = 0;
         for (int i = index; i < Memory.WORD_SIZE; i++) {
             result = result << Memory.BITS_IN_BYTE;
-            result = result | (buffer[i] & 0x000000ff);
+            result = result | (getByte(i) & 0x000000ff);
         }
         return result;
     }
@@ -74,9 +101,9 @@ class ByteBuffer {
      * @param index the location to insert data in this ByteBuffer
      * @param value the eight bytes to be inserted into the ByteBuffer
      */
-    public void putDoubleWord(int index, long value) {
+    public void putDoubleWord(final int index, final long value) {
         for (int i = index; i < Memory.DOUBLEWORD_SIZE; i++) {
-            buffer[i] = (byte) (value >>> (Memory.DOUBLEWORD_SIZE - 1 - i) * Memory.BITS_IN_BYTE);
+            putByte(i, (byte) (value >>> (Memory.DOUBLEWORD_SIZE - 1 - i) * Memory.BITS_IN_BYTE));
         }
     }
 
@@ -86,11 +113,11 @@ class ByteBuffer {
      * @param index the location to retrieve data
      * @return the <code>long</code> formed by concatenating the eight bytes starting at <code>index</code> in this ByteBuffer
      */
-    public long getDoubleWord(int index) {
+    public long getDoubleWord(final int index) {
         long result = 0L;
         for (int i = index; i < Memory.DOUBLEWORD_SIZE; i++) {
             result = result << Memory.BITS_IN_BYTE;
-            result = result | (buffer[i] & 0x00000000000000FFL);
+            result = result | (getByte(i) & 0x00000000000000FFL);
         }
         return result;
     }
