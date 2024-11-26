@@ -13,14 +13,14 @@
     <packaging>gwt-app</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <JavaVersion>11</JavaVersion>
+        <JavaVersion>17</JavaVersion>
     </properties>
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.gwtproject</groupId>
                 <artifactId>gwt</artifactId>
-                <version>2.11.0</version>
+                <version>2.12.1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -66,8 +66,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.13.0</version>
                 <configuration>
-                    <source>${JavaVersion}</source>
-                    <target>${JavaVersion}</target>
+                    <source>17</source>
+                    <target>17</target>
                 </configuration>
             </plugin>
         </plugins>
